@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PRESS ARCHIVE COLLECTION</title>
+
+<style>
+/* ========================================
+   BASE
+======================================== */
+
+:root{
+  --bg:#050914;
+  --bg2:#080e1c;
+  --text:#f4f1e9;
+  --sub:#9ba3b4;
+  --line:rgba(255,255,255,.18);
+  --line-soft:rgba(255,255,255,.09);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:
+    radial-gradient(circle at 15% 8%, rgba(65,87,130,.14), transparent 25%),
+    radial-gradient(circle at 85% 20%, rgba(70,78,130,.10), transparent 22%),
+    var(--bg);
+  color:var(--text);
+  font-family:
+    "Helvetica Neue",
+    "Arial",
+    sans-serif;
+  min-height:100vh;
+}
+
+button{
+  font:inherit;
+}
+
+a{
+  color:inherit;
+}
+
+/* ========================================
+   STARS
+======================================== */
+
+.stars{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  overflow:hidden;
+}
+
+.star{
+  position:absolute;
+  width:2px;
+  height:2px;
+  background:white;
+  border-radius:50%;
+  opacity:.45;
+}
+
+.star.big{
+  width:4px;
+  height:4px;
+  opacity:.75;
+  box-shadow:
+    0 0 8px rgba(255,255,255,.5),
+    0 0 20px rgba(150,180,255,.25);
+}
+
+/* ========================================
+   WRAPPER
+======================================== */
+
+.wrapper{
+  width:min(1180px, calc(100% - 34px));
+  margin:auto;
+}
+
+/* ========================================
+   HEADER
+======================================== */
+
+header{
+  padding:70px 0 45px;
+  border-bottom:1px solid var(--line);
+}
+
+.kicker{
+  font-size:10px;
+  letter-spacing:.36em;
+  color:var(--sub);
+  margin-bottom:12px;
+}
+
+h1{
+  margin:0;
+  font-family:
+    "Times New Roman",
+    "Bodoni 72",
+    Georgia,
+    serif;
+  font-size:clamp(54px, 11vw, 140px);
+  line-height:.78;
+  font-weight:400;
+  letter-spacing:-.055em;
+}
+
+.collection{
+  margin-top:19px;
+  font-size:11px;
+  letter-spacing:.55em;
+  color:#d8d9df;
+}
+
+/* ========================================
+   FILTER
+======================================== */
+
+.controls{
+  padding:32px 0 25px;
+}
+
+.filters{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:9px;
+}
+
+.filter{
+  appearance:none;
+  border:0;
+  background:none;
+  padding:4px 2px;
+  color:#b4bac7;
+  font-size:11px;
+  letter-spacing:.10em;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.filter:hover,
+.filter.active{
+  color:white;
+}
+
+.filter.active{
+  border-bottom:1px solid white;
+}
+
+.separator{
+  color:#747e91;
+  font-size:10px;
+}
+
+/* ========================================
+   FAVORITES + SORT
+======================================== */
+
+.control-row{
+  margin-top:24px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+}
+
+.favorite-filter{
+  min-width:180px;
+  padding:12px 22px;
+  border:1px solid rgba(255,255,255,.5);
+  background:transparent;
+  color:white;
+  letter-spacing:.15em;
+  font-size:10px;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.favorite-filter:hover,
+.favorite-filter.active{
+  background:white;
+  color:#050914;
+}
+
+.sort{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.sort-label{
+  color:#727b8d;
+  font-size:9px;
+  letter-spacing:.18em;
+}
+
+#sortSelect{
+  border:0;
+  border-bottom:1px solid rgba(255,255,255,.45);
+  border-radius:0;
+  background:transparent;
+  color:white;
+  padding:8px 22px 8px 4px;
+  font-size:10px;
+  letter-spacing:.15em;
+  outline:none;
+}
+
+#sortSelect option{
+  background:#080d18;
+}
+
+/* ========================================
+   COUNT
+======================================== */
+
+.archive-meta{
+  margin:22px 0 18px;
+  color:#70798a;
+  font-size:9px;
+  letter-spacing:.2em;
+}
+
+/* ========================================
+   GRID
+======================================== */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  column-gap:32px;
+  row-gap:60px;
+  padding-bottom:100px;
+}
+
+/* ========================================
+   ARTICLE
+======================================== */
+
+.article{
+  min-width:0;
+}
+
+.thumb-link{
+  display:block;
+  text-decoration:none;
+}
+
+.thumb{
+  width:100%;
+  aspect-ratio:16 / 9;
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 25% 20%, rgba(83,101,151,.24), transparent 30%),
+    linear-gradient(135deg,#0c1427,#050914 60%,#10182b);
+  border:1px solid var(--line-soft);
+}
+
+.thumb img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  transition:transform .6s cubic-bezier(.2,.7,.2,1);
+}
+
+.article.magazine .thumb img{
+  object-fit:contain;
+  padding:12px;
+}
+
+.thumb-link:hover img{
+  transform:scale(1.025);
+}
+
+.fallback{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+  text-align:center;
+}
+
+.fallback-star{
+  font-family:Georgia,serif;
+  font-size:25px;
+  color:#d9dbe3;
+}
+
+.fallback-media{
+  font-family:Georgia,serif;
+  font-size:clamp(18px,4vw,29px);
+  letter-spacing:.02em;
+  padding:0 20px;
+}
+
+.external{
+  position:absolute;
+  right:12px;
+  bottom:10px;
+  width:27px;
+  height:27px;
+  border:1px solid rgba(255,255,255,.45);
+  display:grid;
+  place-items:center;
+  font-size:12px;
+  background:rgba(5,9,20,.6);
+  backdrop-filter:blur(7px);
+}
+
+.article-info{
+  padding-top:14px;
+}
+
+.topline{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+}
+
+.date-type{
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+
+.date{
+  color:#949cac;
+  font-size:9px;
+  letter-spacing:.15em;
+}
+
+.type{
+  font-size:8px;
+  letter-spacing:.16em;
+  padding:4px 7px;
+  border:1px solid rgba(255,255,255,.20);
+  color:#9ca5b7;
+}
+
+.heart{
+  appearance:none;
+  border:0;
+  background:none;
+  color:white;
+  cursor:pointer;
+  padding:2px 4px;
+  font-size:19px;
+  line-height:1;
+  transition:.2s;
+}
+
+.heart:hover{
+  transform:scale(1.12);
+}
+
+.media{
+  margin-top:14px;
+  font-family:
+    "Times New Roman",
+    Georgia,
+    serif;
+  font-size:24px;
+  font-weight:400;
+}
+
+.title{
+  margin-top:7px;
+  color:#c9ccd4;
+  font-size:12px;
+  line-height:1.7;
+}
+
+.tags{
+  margin-top:15px;
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.tag{
+  font-size:8px;
+  letter-spacing:.15em;
+  color:#929aaa;
+}
+
+.tag + .tag::before{
+  content:"☆";
+  margin-right:8px;
+  color:#626d80;
+}
+
+/* ========================================
+   EMPTY
+======================================== */
+
+.empty{
+  display:none;
+  padding:90px 0 120px;
+  text-align:center;
+  color:#7e8798;
+  font-family:Georgia,serif;
+  letter-spacing:.12em;
+}
+
+/* ========================================
+   FOOTER
+======================================== */
+
+footer{
+  border-top:1px solid var(--line);
+  padding:35px 0 50px;
+  color:#646e80;
+  font-size:8px;
+  letter-spacing:.2em;
+  display:flex;
+  justify-content:space-between;
+}
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media(max-width:700px){
+
+  .wrapper{
+    width:calc(100% - 28px);
+  }
+
+  header{
+    padding:54px 0 34px;
+  }
+
+  h1{
+    font-size:18vw;
+    line-height:.82;
+  }
+
+  .collection{
+    margin-top:15px;
+    font-size:9px;
+  }
+
+  .controls{
+    padding-top:25px;
+  }
+
+  .filters{
+    gap:7px;
+    line-height:1.9;
+  }
+
+  .filter{
+    font-size:9px;
+  }
+
+  .separator{
+    font-size:8px;
+  }
+
+  .control-row{
+    align-items:stretch;
+    flex-direction:column;
+  }
+
+  .favorite-filter{
+    width:100%;
+  }
+
+  .sort{
+    justify-content:flex-end;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+    row-gap:48px;
+  }
+
+  .media{
+    font-size:22px;
+  }
+
+  footer{
+    flex-direction:column;
+    gap:10px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="stars" id="stars"></div>
+
+<header>
+  <div class="wrapper">
+
+    <div class="kicker">STARGLOW</div>
+
+    <h1>
+      PRESS<br>
+      ARCHIVE
+    </h1>
+
+    <div class="collection">COLLECTION</div>
+
+  </div>
+</header>
+
+
+<main class="wrapper">
+
+  <section class="controls">
+
+    <div class="filters" id="filters">
+
+      <button class="filter active" data-filter="ALL">ALL</button>
+      <span class="separator">☆</span>
+
+      <button class="filter" data-filter="STARGLOW">STARGLOW</button>
+      <span class="separator">☆</span>
+
+      <button class="filter" data-filter="RUI">RUI</button>
+      <span class="separator">☆</span>
+
+      <button class="filter" data-filter="TAIKI">TAIKI</button>
+      <span class="separator">☆</span>
+
+      <button class="filter" data-filter="KANON">KANON</button>
+      <span class="separator">☆</span>
+
+      <button class="filter" data-filter="GOICHI">GOICHI</button>
+      <span class="separator">☆</span>
+
+      <button class="filter" data-filter="ADAM">ADAM</button>
+
+    </div>
+
+
+    <div class="control-row">
+
+      <button class="favorite-filter" id="favoriteFilter">
+        ♡ FAVORITES
+      </button>
+
+      <div class="sort">
+
+        <span class="sort-label">SORT</span>
+
+        <select id="sortSelect">
+          <option value="newest">NEWEST ↓</option>
+          <option value="oldest">OLDEST ↑</option>
+        </select>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <div class="archive-meta" id="archiveMeta"></div>
+
+  <section class="grid" id="grid"></section>
+
+  <div class="empty" id="empty">
+    NO ARCHIVES FOUND ☆
+  </div>
+
+</main>
+
+
+<footer class="wrapper">
+  <span>PRESS ARCHIVE COLLECTION</span>
+  <span>STARGLOW</span>
+</footer>
+
+
+<script>
+
+/* =========================================================
+   記事データ
+   ---------------------------------------------------------
+   新しい記事を追加するときは、
+   この配列に1件追加するだけ。
+
+   image:
+   サムネURLが分かる場合だけ入れる。
+   空欄でもサイトは壊れず、
+   夜空デザインの代替サムネになる。
+========================================================= */
+
+const articles = [
+
+  {
+    id:"qj-monologue-rui-20260925",
+    date:"2026-09-25",
+    type:"WEB",
+    media:"Quick Japan",
+    title:"QJが10代に向けた新レーベル『Quick Japan Monologue』を立ち上げ！ 第1号の表紙・巻頭特集にRUI（STARGLOW）が登場",
+    tags:["RUI"],
+    url:"https://qjweb.jp/news/165701/",
+    image:""
+  },
+
+  {
+    id:"biteki-20260220",
+    date:"2026-02-20",
+    type:"MAGAZINE",
+    media:"美的",
+    title:"2026年4月号 — STARGLOW連載スタート",
+    tags:["STARGLOW"],
+    url:"https://starglow.tokyo/news/media/739/",
+    image:""
+  },
+
+  {
+    id:"oricon-starwish-20260129",
+    date:"2026-01-29",
+    type:"WEB",
+    media:"ORICON NEWS",
+    title:"STARGLOW、デビューシングル「Star Wish」を語る　はじまりの気持ちと、それぞれの抱負",
+    tags:["STARGLOW"],
+    url:"https://www.oricon.co.jp/news/2433155/full/",
+    image:""
+  },
+
+  {
+    id:"smart-goichi-adam-20260106",
+    date:"2026-01-06",
+    type:"WEB",
+    media:"smart Web",
+    title:"GOICHI×ADAMクロストーク「もう何年も一緒にいる感覚」異なる光が惹かれ合う理由",
+    tags:["GOICHI","ADAM"],
+    url:"https://smartmag.jp/archives/117087/",
+    image:""
+  },
+
+  {
+    id:"smart-kanon-taiki-rui-20251231",
+    date:"2025-12-31",
+    type:"WEB",
+    media:"smart Web",
+    title:"KANON×TAIKI×RUIクロストーク「僕たちは“こうなる運命だった”」3人が語る確信と現在地",
+    tags:["KANON","TAIKI","RUI"],
+    url:"https://smartmag.jp/archives/116926/",
+    image:""
+  },
+
+  {
+    id:"qj-rui-20251227",
+    date:"2025-12-27",
+    type:"WEB",
+    media:"Quick Japan",
+    title:"STARGLOW・RUIが語るデビューまでの軌跡「音楽があることに感謝しているし宝物でしかない」",
+    tags:["RUI"],
+    url:"https://qjweb.jp/feature/151473/",
+    image:""
+  },
+
+  {
+    id:"qj-world-dream-20251226",
+    date:"2025-12-26",
+    type:"WEB",
+    media:"Quick Japan",
+    title:"“常識の向こう側へ”STARGLOWが語る「世界一大きな夢」",
+    tags:["STARGLOW"],
+    url:"https://qjweb.jp/feature/151312/",
+    image:""
+  },
+
+  {
+    id:"quick-japan-181-20251210",
+    date:"2025-12-10",
+    type:"MAGAZINE",
+    media:"Quick Japan",
+    title:"vol.181 — STARGLOW 表紙＆巻頭特集",
+    tags:["STARGLOW"],
+    url:"https://starglow.tokyo/news/media/389/",
+    image:""
+  },
+
+  {
+    id:"smart-magazine-20251024",
+    date:"2025-10-24",
+    type:"MAGAZINE",
+    media:"smart",
+    title:"2025年12月号増刊 — STARGLOW ファッション誌初表紙",
+    tags:["STARGLOW"],
+    url:"https://smartmag.jp/archives/111877/",
+    image:""
+  },
+
+  {
+    id:"oricon-20251025",
+    date:"2025-10-25",
+    type:"WEB",
+    media:"ORICON NEWS",
+    title:"STARGLOW、高め合う5人が手にした“星”――「5人みんな、自分にしかないものがある」",
+    tags:["STARGLOW"],
+    url:"https://www.oricon.co.jp/news/2414392/full/",
+    image:""
+  }
+
+];
+
+
+/* =========================================================
+   FAVORITES
+========================================================= */
+
+const STORAGE_KEY = "starglow_press_archive_favorites";
+
+let favorites = JSON.parse(
+  localStorage.getItem(STORAGE_KEY) || "[]"
+);
+
+let activeFilter = "ALL";
+let favoritesOnly = false;
+
+
+/* =========================================================
+   DATE
+========================================================= */
+
+function formatDate(date){
+
+  const d = new Date(date + "T00:00:00");
+
+  return [
+    d.getFullYear(),
+    String(d.getMonth()+1).padStart(2,"0"),
+    String(d.getDate()).padStart(2,"0")
+  ].join(".");
+
+}
+
+
+/* =========================================================
+   FAVORITE
+========================================================= */
+
+function toggleFavorite(id){
+
+  if(favorites.includes(id)){
+
+    favorites =
+      favorites.filter(item => item !== id);
+
+  }else{
+
+    favorites.push(id);
+
+  }
+
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(favorites)
+  );
+
+  render();
+
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+function createCard(article){
+
+  const card =
+    document.createElement("article");
+
+  card.className =
+    "article " +
+    (article.type === "MAGAZINE"
+      ? "magazine"
+      : "web");
+
+
+  /* IMAGE */
+
+  const link =
+    document.createElement("a");
+
+  link.className = "thumb-link";
+  link.href = article.url;
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+
+
+  const thumb =
+    document.createElement("div");
+
+  thumb.className = "thumb";
+
+
+  if(article.image){
+
+    const img =
+      document.createElement("img");
+
+    img.src = article.image;
+    img.alt = article.media;
+    img.loading = "lazy";
+
+    img.onerror = () => {
+      img.remove();
+      addFallback();
+    };
+
+    thumb.appendChild(img);
+
+  }else{
+
+    addFallback();
+
+  }
+
+
+  function addFallback(){
+
+    if(
+      thumb.querySelector(".fallback")
+    ) return;
+
+    const fallback =
+      document.createElement("div");
+
+    fallback.className = "fallback";
+
+    fallback.innerHTML = `
+      <div class="fallback-star">✦</div>
+      <div class="fallback-media">
+        ${article.media}
+      </div>
+    `;
+
+    thumb.appendChild(fallback);
+
+  }
+
+
+  const external =
+    document.createElement("span");
+
+  external.className = "external";
+  external.textContent = "↗";
+
+  thumb.appendChild(external);
+
+  link.appendChild(thumb);
+
+  card.appendChild(link);
+
+
+  /* INFO */
+
+  const info =
+    document.createElement("div");
+
+  info.className = "article-info";
+
+
+  const top =
+    document.createElement("div");
+
+  top.className = "topline";
+
+
+  const dateType =
+    document.createElement("div");
+
+  dateType.className = "date-type";
+
+  dateType.innerHTML = `
+    <span class="date">
+      ${formatDate(article.date)}
+    </span>
+
+    <span class="type">
+      ${article.type}
+    </span>
+  `;
+
+
+  const heart =
+    document.createElement("button");
+
+  heart.className = "heart";
+
+  heart.setAttribute(
+    "aria-label",
+    "お気に入り"
+  );
+
+  heart.textContent =
+    favorites.includes(article.id)
+      ? "♥"
+      : "♡";
+
+  heart.onclick = () =>
+    toggleFavorite(article.id);
+
+
+  top.appendChild(dateType);
+  top.appendChild(heart);
+
+
+  const media =
+    document.createElement("div");
+
+  media.className = "media";
+  media.textContent = article.media;
+
+
+  const title =
+    document.createElement("div");
+
+  title.className = "title";
+  title.textContent = article.title;
+
+
+  const tags =
+    document.createElement("div");
+
+  tags.className = "tags";
+
+
+  article.tags.forEach(tag => {
+
+    const el =
+      document.createElement("span");
+
+    el.className = "tag";
+    el.textContent = tag;
+
+    tags.appendChild(el);
+
+  });
+
+
+  info.appendChild(top);
+  info.appendChild(media);
+  info.appendChild(title);
+  info.appendChild(tags);
+
+  card.appendChild(info);
+
+  return card;
+
+}
+
+
+/* =========================================================
+   RENDER
+========================================================= */
+
+function render(){
+
+  const grid =
+    document.getElementById("grid");
+
+  const empty =
+    document.getElementById("empty");
+
+  const meta =
+    document.getElementById("archiveMeta");
+
+  grid.innerHTML = "";
+
+
+  let result =
+    [...articles];
+
+
+  /* MEMBER FILTER */
+
+  if(activeFilter !== "ALL"){
+
+    result =
+      result.filter(article =>
+        article.tags.includes(activeFilter)
+      );
+
+  }
+
+
+  /* FAVORITES */
+
+  if(favoritesOnly){
+
+    result =
+      result.filter(article =>
+        favorites.includes(article.id)
+      );
+
+  }
+
+
+  /* SORT */
+
+  const sort =
+    document.getElementById(
+      "sortSelect"
+    ).value;
+
+  result.sort((a,b) => {
+
+    const da =
+      new Date(a.date);
+
+    const db =
+      new Date(b.date);
+
+    return sort === "newest"
+      ? db - da
+      : da - db;
+
+  });
+
+
+  /* COUNT */
+
+  meta.textContent =
+    String(result.length).padStart(2,"0")
+    + " ARCHIVES";
+
+
+  /* EMPTY */
+
+  if(result.length === 0){
+
+    empty.style.display = "block";
+
+  }else{
+
+    empty.style.display = "none";
+
+  }
+
+
+  /* CARDS */
+
+  result.forEach(article => {
+
+    grid.appendChild(
+      createCard(article)
+    );
+
+  });
+
+}
+
+
+/* =========================================================
+   FILTER EVENTS
+========================================================= */
+
+document
+.querySelectorAll(".filter")
+.forEach(button => {
+
+  button.addEventListener(
+    "click",
+    () => {
+
+      document
+      .querySelectorAll(".filter")
+      .forEach(item =>
+        item.classList.remove("active")
+      );
+
+      button.classList.add("active");
+
+      activeFilter =
+        button.dataset.filter;
+
+      favoritesOnly = false;
+
+      document
+      .getElementById("favoriteFilter")
+      .classList.remove("active");
+
+      render();
+
+    }
+  );
+
+});
+
+
+/* =========================================================
+   FAVORITE FILTER
+========================================================= */
+
+document
+.getElementById("favoriteFilter")
+.addEventListener(
+  "click",
+  function(){
+
+    favoritesOnly =
+      !favoritesOnly;
+
+    this.classList.toggle(
+      "active",
+      favoritesOnly
+    );
+
+    render();
+
+  }
+);
+
+
+/* =========================================================
+   SORT
+========================================================= */
+
+document
+.getElementById("sortSelect")
+.addEventListener(
+  "change",
+  render
+);
+
+
+/* =========================================================
+   STARS
+========================================================= */
+
+function createStars(){
+
+  const area =
+    document.getElementById("stars");
+
+  for(let i=0;i<75;i++){
+
+    const star =
+      document.createElement("span");
+
+    star.className =
+      Math.random() > .9
+        ? "star big"
+        : "star";
+
+    star.style.left =
+      Math.random()*100 + "%";
+
+    star.style.top =
+      Math.random()*100 + "%";
+
+    star.style.opacity =
+      .15 + Math.random()*.55;
+
+    area.appendChild(star);
+
+  }
+
+}
+
+createStars();
+
+
+/* =========================================================
+   START
+========================================================= */
+
+render();
+
+</script>
+
+</body>
+</html>
