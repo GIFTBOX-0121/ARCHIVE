@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
 <title>PRESS ARCHIVE COLLECTION</title>
 
 <style>
+
 :root{
   --bg:#050914;
   --text:#f4f1e9;
@@ -13,29 +15,41 @@
   --line:rgba(255,255,255,.17);
 }
 
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
-html{scroll-behavior:smooth}
+html{
+  scroll-behavior:smooth;
+}
 
 body{
   margin:0;
   min-height:100vh;
   color:var(--text);
+
   background:
     radial-gradient(circle at 15% 5%,rgba(76,97,150,.16),transparent 27%),
     radial-gradient(circle at 88% 18%,rgba(68,78,135,.11),transparent 23%),
     var(--bg);
+
   font-family:"Helvetica Neue",Arial,sans-serif;
 }
 
-button,select{font:inherit}
+button,
+select{
+  font:inherit;
+}
 
 .wrapper{
   width:min(1180px,calc(100% - 34px));
   margin:auto;
 }
 
-/* ===== STARS ===== */
+
+/* ======================================================
+   STARS
+====================================================== */
 
 .stars{
   position:fixed;
@@ -49,18 +63,24 @@ button,select{font:inherit}
   width:2px;
   height:2px;
   border-radius:50%;
-  background:#fff;
+  background:white;
   opacity:.35;
 }
 
 .star.big{
   width:4px;
   height:4px;
-  opacity:.7;
-  box-shadow:0 0 12px rgba(190,210,255,.6);
+  opacity:.75;
+
+  box-shadow:
+    0 0 10px rgba(255,255,255,.45),
+    0 0 22px rgba(150,180,255,.25);
 }
 
-/* ===== HEADER ===== */
+
+/* ======================================================
+   HEADER
+====================================================== */
 
 header{
   padding:70px 0 44px;
@@ -76,7 +96,12 @@ header{
 
 h1{
   margin:0;
-  font-family:"Times New Roman",Georgia,serif;
+
+  font-family:
+    "Times New Roman",
+    Georgia,
+    serif;
+
   font-size:clamp(58px,11vw,140px);
   line-height:.77;
   letter-spacing:-.055em;
@@ -89,7 +114,10 @@ h1{
   letter-spacing:.58em;
 }
 
-/* ===== CONTROLS ===== */
+
+/* ======================================================
+   CONTROLS
+====================================================== */
 
 .controls{
   padding:30px 0 20px;
@@ -107,15 +135,18 @@ h1{
   border-bottom:1px solid transparent;
   background:none;
   color:#a4abba;
+
   padding:5px 2px;
+
   font-size:10px;
   letter-spacing:.12em;
+
   cursor:pointer;
 }
 
 .filter.active{
-  color:#fff;
-  border-color:#fff;
+  color:white;
+  border-color:white;
 }
 
 .sep{
@@ -128,22 +159,28 @@ h1{
   justify-content:space-between;
   align-items:center;
   gap:20px;
+
   margin-top:24px;
 }
 
 .favorite-filter{
   min-width:190px;
+
   padding:12px 22px;
+
   border:1px solid rgba(255,255,255,.48);
+
   background:transparent;
-  color:#fff;
+  color:white;
+
   font-size:10px;
   letter-spacing:.17em;
+
   cursor:pointer;
 }
 
 .favorite-filter.active{
-  background:#fff;
+  background:white;
   color:#050914;
 }
 
@@ -163,10 +200,14 @@ select{
   border:0;
   border-bottom:1px solid rgba(255,255,255,.4);
   border-radius:0;
+
   outline:0;
+
   padding:7px 3px;
-  color:#fff;
+
+  color:white;
   background:transparent;
+
   font-size:9px;
   letter-spacing:.14em;
 }
@@ -177,24 +218,38 @@ select option{
 
 .meta{
   margin:18px 0;
+
   color:#6e7789;
+
   font-size:8px;
   letter-spacing:.2em;
 }
 
-/* ===== GRID ===== */
+
+/* ======================================================
+   GRID
+====================================================== */
 
 .grid{
   display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
+
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+
   column-gap:32px;
   row-gap:58px;
+
   padding-bottom:100px;
 }
 
 .article{
   min-width:0;
 }
+
+
+/* ======================================================
+   THUMB
+====================================================== */
 
 .thumb-link{
   display:block;
@@ -204,21 +259,40 @@ select option{
 
 .thumb{
   position:relative;
+
   width:100%;
   aspect-ratio:16/9;
+
   overflow:hidden;
-  border:1px solid rgba(255,255,255,.08);
+
+  border:
+    1px solid rgba(255,255,255,.08);
+
   background:
-    radial-gradient(circle at 25% 20%,rgba(83,101,151,.24),transparent 30%),
-    linear-gradient(135deg,#0c1427,#050914 60%,#10182b);
+    radial-gradient(
+      circle at 25% 20%,
+      rgba(83,101,151,.24),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #0c1427,
+      #050914 60%,
+      #10182b
+    );
 }
 
 .thumb img{
   width:100%;
   height:100%;
+
   display:block;
+
   object-fit:cover;
-  transition:transform .5s ease;
+
+  transition:
+    transform .5s ease,
+    opacity .3s ease;
 }
 
 .article.magazine .thumb img{
@@ -230,15 +304,71 @@ select option{
   transform:scale(1.025);
 }
 
+
+/* ======================================================
+   LOADING
+====================================================== */
+
+.loading{
+  position:absolute;
+  inset:0;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  gap:12px;
+
+  color:#7e8798;
+
+  font-family:Georgia,serif;
+
+  letter-spacing:.15em;
+}
+
+.loading-star{
+  font-size:24px;
+
+  animation:
+    pulse 1.6s ease-in-out infinite;
+}
+
+.loading-text{
+  font-size:8px;
+}
+
+@keyframes pulse{
+
+  0%,100%{
+    opacity:.25;
+  }
+
+  50%{
+    opacity:1;
+  }
+
+}
+
+
+/* ======================================================
+   FALLBACK
+====================================================== */
+
 .fallback{
   position:absolute;
   inset:0;
+
   display:flex;
   flex-direction:column;
+
   justify-content:center;
   align-items:center;
+
   gap:12px;
+
   text-align:center;
+
   padding:20px;
 }
 
@@ -248,22 +378,43 @@ select option{
 }
 
 .fallback-media{
-  font-family:"Times New Roman",Georgia,serif;
-  font-size:clamp(20px,4vw,30px);
+  font-family:
+    "Times New Roman",
+    Georgia,
+    serif;
+
+  font-size:
+    clamp(20px,4vw,30px);
 }
 
 .external{
   position:absolute;
+
   right:11px;
   bottom:10px;
+
   width:27px;
   height:27px;
+
   display:grid;
   place-items:center;
-  border:1px solid rgba(255,255,255,.4);
-  background:rgba(5,9,20,.62);
+
+  border:
+    1px solid rgba(255,255,255,.4);
+
+  background:
+    rgba(5,9,20,.62);
+
+  backdrop-filter:
+    blur(7px);
+
   font-size:12px;
 }
+
+
+/* ======================================================
+   INFO
+====================================================== */
 
 .info{
   padding-top:14px;
@@ -283,14 +434,19 @@ select option{
 
 .date{
   color:#9099aa;
+
   font-size:8px;
   letter-spacing:.16em;
 }
 
 .type{
   padding:4px 7px;
-  border:1px solid rgba(255,255,255,.18);
+
+  border:
+    1px solid rgba(255,255,255,.18);
+
   color:#9ba3b4;
+
   font-size:7px;
   letter-spacing:.16em;
 }
@@ -298,21 +454,32 @@ select option{
 .heart{
   border:0;
   background:none;
-  color:#fff;
+
+  color:white;
+
   padding:2px 4px;
+
   font-size:19px;
+
   cursor:pointer;
 }
 
 .media{
   margin-top:13px;
-  font-family:"Times New Roman",Georgia,serif;
+
+  font-family:
+    "Times New Roman",
+    Georgia,
+    serif;
+
   font-size:24px;
 }
 
 .title{
   margin-top:7px;
+
   color:#c5c9d1;
+
   font-size:12px;
   line-height:1.7;
 }
@@ -321,41 +488,66 @@ select option{
   display:flex;
   flex-wrap:wrap;
   gap:8px;
+
   margin-top:14px;
 }
 
 .tag{
   color:#9099aa;
+
   font-size:8px;
   letter-spacing:.15em;
 }
 
 .tag + .tag::before{
   content:"☆";
+
   margin-right:8px;
+
   color:#5e687b;
 }
 
+
+/* ======================================================
+   EMPTY
+====================================================== */
+
 .empty{
   display:none;
+
   padding:80px 0 120px;
+
   text-align:center;
+
   color:#798294;
+
   font-family:Georgia,serif;
   letter-spacing:.15em;
 }
 
+
+/* ======================================================
+   FOOTER
+====================================================== */
+
 footer{
   display:flex;
   justify-content:space-between;
+
   padding:32px 0 45px;
+
   border-top:1px solid var(--line);
+
   color:#626c80;
+
   font-size:8px;
   letter-spacing:.2em;
 }
 
-/* ===== MOBILE ===== */
+
+/* ======================================================
+   MOBILE
+====================================================== */
 
 @media(max-width:700px){
 
@@ -401,759 +593,796 @@ footer{
     flex-direction:column;
     gap:9px;
   }
+
 }
+
 </style>
 </head>
+
 
 <body>
 
 <div class="stars" id="stars"></div>
 
+
 <header>
+
 <div class="wrapper">
 
-<div class="kicker">STARGLOW</div>
+<div class="kicker">
+STARGLOW
+</div>
 
-<h1>PRESS<br>ARCHIVE</h1>
+<h1>
+PRESS<br>
+ARCHIVE
+</h1>
 
-<div class="collection">COLLECTION</div>
+<div class="collection">
+COLLECTION
+</div>
 
 </div>
+
 </header>
+
 
 <main class="wrapper">
 
+
 <section class="controls">
+
 
 <div class="filters">
 
-<button class="filter active" data-filter="ALL">ALL</button>
+<button
+class="filter active"
+data-filter="ALL">
+ALL
+</button>
+
 <span class="sep">☆</span>
 
-<button class="filter" data-filter="STARGLOW">STARGLOW</button>
+
+<button
+class="filter"
+data-filter="STARGLOW">
+STARGLOW
+</button>
+
 <span class="sep">☆</span>
 
-<button class="filter" data-filter="RUI">RUI</button>
+
+<button
+class="filter"
+data-filter="RUI">
+RUI
+</button>
+
 <span class="sep">☆</span>
 
-<button class="filter" data-filter="TAIKI">TAIKI</button>
+
+<button
+class="filter"
+data-filter="TAIKI">
+TAIKI
+</button>
+
 <span class="sep">☆</span>
 
-<button class="filter" data-filter="KANON">KANON</button>
+
+<button
+class="filter"
+data-filter="KANON">
+KANON
+</button>
+
 <span class="sep">☆</span>
 
-<button class="filter" data-filter="GOICHI">GOICHI</button>
+
+<button
+class="filter"
+data-filter="GOICHI">
+GOICHI
+</button>
+
 <span class="sep">☆</span>
 
-<button class="filter" data-filter="ADAM">ADAM</button>
+
+<button
+class="filter"
+data-filter="ADAM">
+ADAM
+</button>
 
 </div>
+
 
 <div class="control-row">
 
-<button id="favoriteFilter" class="favorite-filter">
+<button
+id="favoriteFilter"
+class="favorite-filter">
+
 ♡ FAVORITES
+
 </button>
 
+
 <div class="sort">
+
 <span>SORT</span>
 
 <select id="sortSelect">
-<option value="newest">NEWEST ↓</option>
-<option value="oldest">OLDEST ↑</option>
+
+<option value="newest">
+NEWEST ↓
+</option>
+
+<option value="oldest">
+OLDEST ↑
+</option>
+
 </select>
 
 </div>
+
 </div>
+
 
 </section>
 
-<div class="meta" id="meta"></div>
 
-<section class="grid" id="grid"></section>
-
-<div class="empty" id="empty">
-NO ARCHIVES FOUND ☆
+<div
+class="meta"
+id="meta">
 </div>
+
+
+<section
+class="grid"
+id="grid">
+</section>
+
+
+<div
+class="empty"
+id="empty">
+
+NO ARCHIVES FOUND ☆
+
+</div>
+
 
 </main>
 
+
 <footer class="wrapper">
-<span>PRESS ARCHIVE COLLECTION</span>
-<span>STARGLOW</span>
+
+<span>
+PRESS ARCHIVE COLLECTION
+</span>
+
+<span>
+STARGLOW
+</span>
+
 </footer>
+
+
 
 <script>
 
 /* =========================================================
-   PRESS ARCHIVE DATA
+   OGP WORKER
+========================================================= */
 
-   image:"" のものは夜空の代替サムネを表示。
-   今後、安全に保存した画像を用意したら
-   image:"images/xxxx.jpg"
-   のように変更できます。
+const OGP_WORKER =
+"https://press-archive-ogp.starsx0601.workers.dev/";
+
+
+/* =========================================================
+   記事データ
+
+   WEBは基本、
+
+   date
+   type
+   tags
+   url
+
+   だけでOK。
+
+   title / media / image は
+   Cloudflare Workerが取得します。
+
+   MAGAZINEなどで上書きしたい場合は、
+
+   title:"..."
+   media:"..."
+   image:"..."
+
+   を追加できます。
 ========================================================= */
 
 const articles = [
 
-/* =========================================================
+/* ========================
    2026
-========================================================= */
+======================== */
 
 {
-id:"fineboys-oyasumi-20260831",
-date:"2026-08-31",
-type:"MAGAZINE",
-media:"FINEBOYS+plus OYASUMI",
-title:"vol.2 — RUI掲載",
-tags:["RUI"],
-url:"https://starglow.tokyo/",
-image:""
+  date:"2026-08-21",
+  type:"WEB",
+  tags:["RUI"],
+  url:"https://sweetweb.jp/archives/175216/"
 },
 
 {
-id:"vivi-20260821",
-date:"2026-08-21",
-type:"MAGAZINE",
-media:"ViVi",
-title:"2026年10月号 — RUI掲載",
-tags:["RUI"],
-url:"https://www.vivi.tv/post486383/",
-image:""
+  date:"2026-08-19",
+  type:"WEB",
+  tags:["GOICHI"],
+  url:"https://sweetweb.jp/archives/175198/"
 },
 
 {
-id:"sweet-rui-20260821",
-date:"2026-08-21",
-type:"WEB",
-media:"sweet web",
-title:"STARGLOW RUIインタビュー",
-tags:["RUI"],
-url:"https://sweetweb.jp/archives/175216/",
-image:""
+  date:"2026-07-24",
+  type:"WEB",
+  tags:["GOICHI"],
+  url:"https://fineboys-online.jp/interview/detail.php?id=6224"
 },
 
 {
-id:"sweet-adam-20260820",
-date:"2026-08-20",
-type:"WEB",
-media:"sweet web",
-title:"STARGLOW ADAMインタビュー",
-tags:["ADAM"],
-url:"https://sweetweb.jp/",
-image:""
+  date:"2026-07-21",
+  type:"WEB",
+  tags:["STARGLOW"],
+  url:"https://news.mynavi.jp/article/20260721-4726197/"
 },
 
 {
-id:"sweet-goichi-20260819",
-date:"2026-08-19",
-type:"WEB",
-media:"sweet web",
-title:"STARGLOW GOICHIインタビュー",
-tags:["GOICHI"],
-url:"https://sweetweb.jp/archives/175198/",
-image:""
+  date:"2026-06-25",
+  type:"WEB",
+  tags:["STARGLOW"],
+  url:"https://spur.hpplus.jp/culture/topics/2026-06-25-uZImKg/"
 },
 
 {
-id:"sweet-taiki-20260818",
-date:"2026-08-18",
-type:"WEB",
-media:"sweet web",
-title:"STARGLOW TAIKIインタビュー",
-tags:["TAIKI"],
-url:"https://sweetweb.jp/",
-image:""
+  date:"2026-05-07",
+  type:"WEB",
+  tags:["STARGLOW"],
+  url:"https://gakumado.mynavi.jp/teens/articles/88071"
 },
 
 {
-id:"sweet-kanon-20260817",
-date:"2026-08-17",
-type:"WEB",
-media:"sweet web",
-title:"STARGLOW KANONインタビュー",
-tags:["KANON"],
-url:"https://sweetweb.jp/",
-image:""
+  date:"2026-04-14",
+  type:"WEB",
+  tags:["RUI","TAIKI","GOICHI"],
+  url:"https://classy-online.jp/culture/523669/"
 },
 
 {
-id:"nylon-2026-09",
-date:"2026-07-28",
-type:"MAGAZINE",
-media:"NYLON JAPAN",
-title:"2026年9月号 SPECIAL EDITION — STARGLOW",
-tags:["STARGLOW"],
-url:"https://starglow.tokyo/",
-image:""
+  date:"2026-04-10",
+  type:"WEB",
+  tags:["GOICHI"],
+  url:"https://sweetweb.jp/archives/158962/"
 },
 
 {
-id:"fineboys-goichi-20260724",
-date:"2026-07-24",
-type:"WEB",
-media:"FINEBOYS Online",
-title:"GOICHIインタビュー — ネイル＆3rdシングル制作秘話",
-tags:["GOICHI"],
-url:"https://fineboys-online.jp/interview/detail.php?id=6224",
-image:""
+  date:"2026-04-09",
+  type:"WEB",
+  tags:["RUI"],
+  url:"https://sweetweb.jp/archives/158959/"
 },
 
 {
-id:"mynavi-20260721",
-date:"2026-07-21",
-type:"WEB",
-media:"マイナビニュース",
-title:"STARGLOWインタビュー — 5人の曲作り",
-tags:["STARGLOW"],
-url:"https://news.mynavi.jp/article/20260721-4726197/",
-image:""
+  date:"2026-04-03",
+  type:"WEB",
+  tags:["STARGLOW"],
+  url:"https://www.entax.news/interview/202604031900.html"
 },
 
 {
-id:"qj184-kanon-20260624",
-date:"2026-06-24",
-type:"MAGAZINE",
-media:"Quick Japan",
-title:"vol.184 SPECIAL EDITION — KANON 表紙＆特集",
-tags:["KANON"],
-url:"https://starglow.tokyo/news/media/966/",
-image:""
+  date:"2026-04-01",
+  type:"WEB",
+  tags:["STARGLOW"],
+  url:"https://soen.tokyo/interview/cm28_starglow_20260401/"
 },
 
 {
-id:"onvoice-20260623",
-date:"2026-06-23",
-type:"MAGAZINE",
-media:"ON VOICE",
-title:"Vol.4 — KANON掲載",
-tags:["KANON"],
-url:"https://starglow.tokyo/news/media/1166/",
-image:""
+  date:"2026-02-06",
+  type:"WEB",
+  tags:["TAIKI","ADAM"],
+  url:"https://news.j-wave.co.jp/2026/02/content-4948.html"
 },
 
 {
-id:"spur-20260625",
-date:"2026-06-25",
-type:"WEB",
-media:"SPUR",
-title:"STARGLOWが考える「カッコいい大人」とは？",
-tags:["STARGLOW"],
-url:"https://spur.hpplus.jp/culture/topics/2026-06-25-uZImKg/",
-image:""
+  date:"2026-01-29",
+  type:"WEB",
+  tags:["STARGLOW"],
+  url:"https://www.oricon.co.jp/news/2433155/full/"
 },
 
 {
-id:"cyanman-20260512",
-date:"2026-05-12",
-type:"MAGAZINE",
-media:"CYAN MAN",
-title:"2026年6月号 — RUI掲載",
-tags:["RUI"],
-url:"https://starglow.tokyo/news/media/950/",
-image:""
+  date:"2026-01-19",
+  type:"WEB",
+  tags:["STARGLOW"],
+  url:"https://maquia.hpplus.jp/life/news/115265/"
 },
 
 {
-id:"mynavi-teens-20260507",
-date:"2026-05-07",
-type:"WEB",
-media:"マイナビティーンズ",
-title:"STARGLOW TGC出演後インタビュー",
-tags:["STARGLOW"],
-url:"https://gakumado.mynavi.jp/teens/articles/88071",
-image:""
+  date:"2026-01-11",
+  type:"WEB",
+  tags:["KANON"],
+  url:"https://smartmag.jp/archives/117165/"
 },
 
 {
-id:"numero-20260428",
-date:"2026-04-28",
-type:"MAGAZINE",
-media:"Numero TOKYO",
-title:"2026年6月号特装版 — STARGLOW表紙",
-tags:["STARGLOW"],
-url:"https://starglow.tokyo/news/media/865/",
-image:""
+  date:"2026-01-10",
+  type:"WEB",
+  tags:["ADAM"],
+  url:"https://smartmag.jp/archives/117155/"
 },
 
 {
-id:"junon-kanon-20260422",
-date:"2026-04-22",
-type:"MAGAZINE",
-media:"JUNON",
-title:"2026年6月号 — KANON掲載",
-tags:["KANON"],
-url:"https://starglow.tokyo/news/media/955/",
-image:""
+  date:"2026-01-09",
+  type:"WEB",
+  tags:["TAIKI"],
+  url:"https://smartmag.jp/archives/117142/"
 },
 
 {
-id:"classy-20260414",
-date:"2026-04-14",
-type:"WEB",
-media:"CLASSY. ONLINE",
-title:"RUI・TAIKI・GOICHI ソロインタビュー",
-tags:["RUI","TAIKI","GOICHI"],
-url:"https://classy-online.jp/culture/523669/",
-image:""
+  date:"2026-01-08",
+  type:"WEB",
+  tags:["GOICHI"],
+  url:"https://smartmag.jp/archives/117136/"
 },
 
 {
-id:"sweet-goichi-20260410",
-date:"2026-04-10",
-type:"WEB",
-media:"sweet web",
-title:"GOICHI「悔しさを乗り越えて、自分のスタイルを突き詰めた」",
-tags:["GOICHI"],
-url:"https://sweetweb.jp/archives/158962/",
-image:""
+  date:"2026-01-07",
+  type:"WEB",
+  tags:["RUI"],
+  url:"https://smartmag.jp/archives/117130/"
 },
 
 {
-id:"fineboys-rui-20260409",
-date:"2026-04-09",
-type:"MAGAZINE",
-media:"FINEBOYS",
-title:"2026年5月号 — RUI掲載",
-tags:["RUI"],
-url:"https://starglow.tokyo/news/media/941/",
-image:""
+  date:"2026-01-06",
+  type:"WEB",
+  tags:["GOICHI","ADAM"],
+  url:"https://smartmag.jp/archives/117087/"
 },
 
-{
-id:"sweet-rui-20260409",
-date:"2026-04-09",
-type:"WEB",
-media:"sweet web",
-title:"RUI「ファンにとって身近で必要不可欠な存在であり続けたい」",
-tags:["RUI"],
-url:"https://sweetweb.jp/archives/158959/",
-image:""
-},
 
-{
-id:"music-and-people-20260403",
-date:"2026-04-03",
-type:"MAGAZINE",
-media:"音楽と人",
-title:"2026年5月号 — STARGLOW 撮り下ろし＆インタビュー",
-tags:["STARGLOW"],
-url:"https://starglow.tokyo/news/media/891/",
-image:""
-},
-
-{
-id:"entax-20260403",
-date:"2026-04-03",
-type:"WEB",
-media:"entax",
-title:"STARGLOW 超十代 独自インタビュー",
-tags:["STARGLOW"],
-url:"https://www.entax.news/interview/202604031900.html",
-image:""
-},
-
-{
-id:"soen-20260401",
-date:"2026-04-01",
-type:"WEB",
-media:"装苑ONLINE",
-title:"STARGLOW『USOTSUKI』— 5人の現在地",
-tags:["STARGLOW"],
-url:"https://soen.tokyo/interview/cm28_starglow_20260401/",
-image:""
-},
-
-{
-id:"kadokawa-scene-20260331",
-date:"2026-03-31",
-type:"MAGAZINE",
-media:"別冊カドカワScene",
-title:"15 — STARGLOWインタビュー",
-tags:["STARGLOW"],
-url:"https://starglow.tokyo/news/media/859/",
-image:""
-},
-
-{
-id:"musica-20260317",
-date:"2026-03-17",
-type:"MAGAZINE",
-media:"MUSICA",
-title:"2026年4月号 — STARGLOW 撮り下ろし＆インタビュー",
-tags:["STARGLOW"],
-url:"https://starglow.tokyo/news/media/830/",
-image:""
-},
-
-{
-id:"biteki-20260220",
-date:"2026-02-20",
-type:"MAGAZINE",
-media:"美的",
-title:"2026年4月号 — STARGLOW連載スタート",
-tags:["STARGLOW"],
-url:"https://starglow.tokyo/news/media/739/",
-image:""
-},
-
-{
-id:"jwave-20260206",
-date:"2026-02-06",
-type:"WEB",
-media:"J-WAVE NEWS",
-title:"TAIKI・ADAMが語る憧れのアーティスト",
-tags:["TAIKI","ADAM"],
-url:"https://news.j-wave.co.jp/2026/02/content-4948.html",
-image:""
-},
-
-{
-id:"music-and-people-20260205",
-date:"2026-02-05",
-type:"MAGAZINE",
-media:"音楽と人",
-title:"2026年3月号 — STARGLOW 撮り下ろし＆インタビュー",
-tags:["STARGLOW"],
-url:"https://starglow.tokyo/news/media/694/",
-image:""
-},
-
-{
-id:"oricon-starwish-20260129",
-date:"2026-01-29",
-type:"WEB",
-media:"ORICON NEWS",
-title:"STARGLOW デビューシングル『Star Wish』インタビュー",
-tags:["STARGLOW"],
-url:"https://www.oricon.co.jp/news/2433155/full/",
-image:""
-},
-
-{
-id:"biteki-20260122",
-date:"2026-01-22",
-type:"MAGAZINE",
-media:"美的",
-title:"2026年3月号 — STARGLOW 撮り下ろし＆インタビュー",
-tags:["STARGLOW"],
-url:"https://starglow.tokyo/news/media/633/",
-image:""
-},
-
-{
-id:"tokyo-calendar-20260121",
-date:"2026-01-21",
-type:"MAGAZINE",
-media:"東京カレンダー",
-title:"2026年3月号 特別増刊 — STARGLOW表紙",
-tags:["STARGLOW"],
-url:"https://starglow.tokyo/news/media/552/",
-image:""
-},
-
-{
-id:"maquia-20260119",
-date:"2026-01-19",
-type:"WEB",
-media:"MAQUIA ONLINE",
-title:"STARGLOWにインタビュー — 5人が語る香りと美",
-tags:["STARGLOW"],
-url:"https://maquia.hpplus.jp/life/news/115265/",
-image:""
-},
-
-{
-id:"cut-20260119",
-date:"2026-01-19",
-type:"MAGAZINE",
-media:"CUT",
-title:"2026年2月号 — STARGLOW表紙",
-tags:["STARGLOW"],
-url:"https://starglow.tokyo/news/media/559/",
-image:""
-},
-
-{
-id:"smart-kanon-20260111",
-date:"2026-01-11",
-type:"WEB",
-media:"smart Web",
-title:"KANONインタビュー＆35問",
-tags:["KANON"],
-url:"https://smartmag.jp/archives/117165/",
-image:""
-},
-
-{
-id:"smart-adam-20260110",
-date:"2026-01-10",
-type:"WEB",
-media:"smart Web",
-title:"ADAMインタビュー＆35問",
-tags:["ADAM"],
-url:"https://smartmag.jp/archives/117155/",
-image:""
-},
-
-{
-id:"smart-taiki-20260109",
-date:"2026-01-09",
-type:"WEB",
-media:"smart Web",
-title:"TAIKIインタビュー＆35問",
-tags:["TAIKI"],
-url:"https://smartmag.jp/archives/117142/",
-image:""
-},
-
-{
-id:"smart-goichi-20260108",
-date:"2026-01-08",
-type:"WEB",
-media:"smart Web",
-title:"GOICHIインタビュー＆35問",
-tags:["GOICHI"],
-url:"https://smartmag.jp/archives/117136/",
-image:""
-},
-
-{
-id:"smart-rui-20260107",
-date:"2026-01-07",
-type:"WEB",
-media:"smart Web",
-title:"RUIインタビュー＆35問",
-tags:["RUI"],
-url:"https://smartmag.jp/archives/117130/",
-image:""
-},
-
-{
-id:"smart-goichi-adam-20260106",
-date:"2026-01-06",
-type:"WEB",
-media:"smart Web",
-title:"GOICHI×ADAM クロストーク",
-tags:["GOICHI","ADAM"],
-url:"https://smartmag.jp/archives/117087/",
-image:""
-},
-
-/* =========================================================
+/* ========================
    2025
-========================================================= */
+======================== */
 
 {
-id:"smart-trio-20251231",
-date:"2025-12-31",
-type:"WEB",
-media:"smart Web",
-title:"KANON×TAIKI×RUI クロストーク",
-tags:["KANON","TAIKI","RUI"],
-url:"https://smartmag.jp/archives/116926/",
-image:""
+  date:"2025-12-31",
+  type:"WEB",
+  tags:["KANON","TAIKI","RUI"],
+  url:"https://smartmag.jp/archives/116926/"
 },
 
 {
-id:"qj-rui-20251227",
-date:"2025-12-27",
-type:"WEB",
-media:"Quick Japan",
-title:"RUIが語るデビューまでの軌跡",
-tags:["RUI"],
-url:"https://qjweb.jp/feature/151473/",
-image:""
+  date:"2025-12-27",
+  type:"WEB",
+  tags:["RUI"],
+  url:"https://qjweb.jp/feature/151473/"
 },
 
 {
-id:"anan-2476",
-date:"2025-12-17",
-type:"MAGAZINE",
-media:"anan",
-title:"No.2476 — CLOSE UP『熱を帯びた星たち。』",
-tags:["STARGLOW"],
-url:"https://ananweb.jp/magazine/76932",
-image:""
+  date:"2025-12-10",
+  type:"MAGAZINE",
+  tags:["STARGLOW"],
+
+  url:"https://qjweb.jp/news/150210/",
+
+  media:"Quick Japan",
+
+  title:
+  "vol.181 — STARGLOW 表紙＆65ページ総力特集"
 },
 
 {
-id:"quick-japan-181",
-date:"2025-12-10",
-type:"MAGAZINE",
-media:"Quick Japan",
-title:"vol.181 — STARGLOW 表紙＆65ページ総力特集",
-tags:["STARGLOW"],
-url:"https://qjweb.jp/news/150210/",
-image:""
+  date:"2025-12-08",
+  type:"MAGAZINE",
+  tags:["STARGLOW"],
+
+  url:
+  "https://starglow.tokyo/news/media/475/",
+
+  media:"AERA",
+
+  title:
+  "2025年12月15日号 — STARGLOWインタビュー"
 },
 
 {
-id:"aera-20251208",
-date:"2025-12-08",
-type:"MAGAZINE",
-media:"AERA",
-title:"2025年12月15日号 — STARGLOWインタビュー",
-tags:["STARGLOW"],
-url:"https://starglow.tokyo/news/media/475/",
-image:""
+  date:"2025-11-05",
+  type:"MAGAZINE",
+  tags:["STARGLOW"],
+
+  url:
+  "https://starglow.tokyo/news/media/411/",
+
+  media:"音楽と人",
+
+  title:
+  "2025年12月号 — STARGLOW 撮り下ろし＆インタビュー"
 },
 
 {
-id:"music-and-people-20251105",
-date:"2025-11-05",
-type:"MAGAZINE",
-media:"音楽と人",
-title:"2025年12月号 — STARGLOW 撮り下ろし＆インタビュー",
-tags:["STARGLOW"],
-url:"https://starglow.tokyo/news/media/411/",
-image:""
+  date:"2025-10-25",
+  type:"WEB",
+  tags:["STARGLOW"],
+
+  url:
+  "https://www.oricon.co.jp/news/2414392/full/"
 },
 
 {
-id:"oricon-20251025",
-date:"2025-10-25",
-type:"WEB",
-media:"ORICON NEWS",
-title:"STARGLOW、高め合う5人が手にした“星”",
-tags:["STARGLOW"],
-url:"https://www.oricon.co.jp/news/2414392/full/",
-image:""
+  date:"2025-10-24",
+  type:"MAGAZINE",
+  tags:["STARGLOW"],
+
+  url:
+  "https://smartmag.jp/archives/111877/",
+
+  media:"smart",
+
+  title:
+  "2025年12月号増刊 — STARGLOW ファッション誌初表紙"
 },
 
 {
-id:"smart-magazine-20251024",
-date:"2025-10-24",
-type:"MAGAZINE",
-media:"smart",
-title:"2025年12月号増刊 — STARGLOW ファッション誌初表紙",
-tags:["STARGLOW"],
-url:"https://smartmag.jp/archives/111877/",
-image:""
+  date:"2025-10-22",
+  type:"MAGAZINE",
+  tags:["STARGLOW"],
+
+  url:
+  "https://www.oricon.co.jp/news/2413455/full/",
+
+  media:"JUNON",
+
+  title:
+  "2025年12月号臨増版 — STARGLOW 表紙＆裏表紙"
 },
 
 {
-id:"junon-20251022",
-date:"2025-10-22",
-type:"MAGAZINE",
-media:"JUNON",
-title:"2025年12月号臨増版 — STARGLOW 表紙＆裏表紙",
-tags:["STARGLOW"],
-url:"https://www.oricon.co.jp/news/2413455/full/",
-image:""
-},
+  date:"2025-10-03",
+  type:"MAGAZINE",
+  tags:["STARGLOW"],
 
-{
-id:"nikkei-ent-20251003",
-date:"2025-10-03",
-type:"MAGAZINE",
-media:"日経エンタテインメント！",
-title:"2025年11月号 — STARGLOW 初表紙・個人＆グループインタビュー",
-tags:["STARGLOW"],
-url:"https://starglow.tokyo/news/media/298/",
-image:""
+  url:
+  "https://starglow.tokyo/news/media/298/",
+
+  media:
+  "日経エンタテインメント！",
+
+  title:
+  "2025年11月号 — STARGLOW 初表紙・個人＆グループインタビュー"
 }
 
 ];
 
 
-/* ===== STATE ===== */
+/* =========================================================
+   ID 自動生成
+========================================================= */
 
-const STORAGE_KEY="pressArchiveFavorites";
+articles.forEach((article,index)=>{
+
+  if(!article.id){
+
+    article.id =
+      article.date +
+      "-" +
+      index +
+      "-" +
+      simpleHash(article.url);
+
+  }
+
+});
+
+
+function simpleHash(text){
+
+  let hash=0;
+
+  for(let i=0;i<text.length;i++){
+
+    hash =
+      ((hash<<5)-hash)
+      +text.charCodeAt(i);
+
+    hash |= 0;
+
+  }
+
+  return Math.abs(hash).toString(36);
+
+}
+
+
+/* =========================================================
+   FAVORITES
+========================================================= */
+
+const STORAGE_KEY =
+"pressArchiveFavoritesV2";
+
 
 let favorites;
 
 try{
-  favorites=JSON.parse(localStorage.getItem(STORAGE_KEY)||"[]");
+
+  favorites =
+    JSON.parse(
+      localStorage.getItem(STORAGE_KEY)
+      ||
+      "[]"
+    );
+
 }catch{
+
   favorites=[];
+
 }
 
+
 let activeFilter="ALL";
+
 let favoritesOnly=false;
 
 
-/* ===== HELPERS ===== */
+/* =========================================================
+   OGP CACHE
 
-function formatDate(date){
-  return date.replaceAll("-",".");
+   同じ記事を毎回Workerへ問い合わせないよう、
+   ブラウザに保存します。
+========================================================= */
+
+const OGP_CACHE_KEY =
+"pressArchiveOGPCacheV1";
+
+
+let ogpCache;
+
+try{
+
+  ogpCache =
+    JSON.parse(
+      localStorage.getItem(OGP_CACHE_KEY)
+      ||
+      "{}"
+    );
+
+}catch{
+
+  ogpCache={};
+
 }
 
-function escapeHTML(value){
-  return String(value)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+
+/* =========================================================
+   OGP取得
+========================================================= */
+
+async function getOGP(article){
+
+  /*
+    キャッシュがあれば使用
+  */
+
+  if(ogpCache[article.url]){
+
+    return ogpCache[article.url];
+
+  }
+
+
+  try{
+
+    const endpoint =
+      OGP_WORKER
+      +
+      "?url="
+      +
+      encodeURIComponent(article.url);
+
+
+    const response =
+      await fetch(endpoint);
+
+
+    if(!response.ok){
+
+      throw new Error(
+        "OGP HTTP "
+        +
+        response.status
+      );
+
+    }
+
+
+    const data =
+      await response.json();
+
+
+    if(!data.ok){
+
+      throw new Error(
+        data.error
+        ||
+        "OGP取得失敗"
+      );
+
+    }
+
+
+    ogpCache[article.url] = data;
+
+
+    try{
+
+      localStorage.setItem(
+        OGP_CACHE_KEY,
+        JSON.stringify(ogpCache)
+      );
+
+    }catch{
+
+      /*
+        キャッシュ容量超過などの場合は
+        保存しなくても表示自体は続行
+      */
+
+    }
+
+
+    return data;
+
+
+  }catch(error){
+
+    console.warn(
+      "OGP ERROR:",
+      article.url,
+      error
+    );
+
+
+    return {
+
+      ok:false,
+
+      title:"",
+
+      siteName:"",
+
+      image:""
+
+    };
+
+  }
+
 }
 
 
-/* ===== FAVORITES ===== */
+/* =========================================================
+   FAVORITE
+========================================================= */
 
 function toggleFavorite(id){
 
   if(favorites.includes(id)){
-    favorites=favorites.filter(x=>x!==id);
+
+    favorites =
+      favorites.filter(
+        item => item !== id
+      );
+
   }else{
+
     favorites.push(id);
+
   }
+
 
   localStorage.setItem(
     STORAGE_KEY,
     JSON.stringify(favorites)
   );
 
+
   render();
+
 }
 
 
-/* ===== CARD ===== */
+/* =========================================================
+   HELPERS
+========================================================= */
 
-function createCard(a){
+function formatDate(date){
 
-  const article=document.createElement("article");
+  return date.replaceAll("-",".");
 
-  article.className=
-    "article "+(a.type==="MAGAZINE"?"magazine":"web");
+}
 
-  const tags=a.tags.map(tag=>
-    `<span class="tag">${escapeHTML(tag)}</span>`
-  ).join("");
 
-  article.innerHTML=`
+function escapeHTML(value){
+
+  return String(value ?? "")
+
+    .replaceAll("&","&amp;")
+
+    .replaceAll("<","&lt;")
+
+    .replaceAll(">","&gt;")
+
+    .replaceAll('"',"&quot;")
+
+    .replaceAll("'","&#039;");
+
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+function createCard(article){
+
+  const card =
+    document.createElement("article");
+
+
+  card.className =
+    "article "
+    +
+    (
+      article.type === "MAGAZINE"
+      ?
+      "magazine"
+      :
+      "web"
+    );
+
+
+  card.innerHTML = `
 
     <a
       class="thumb-link"
-      href="${escapeHTML(a.url)}"
+      href="${escapeHTML(article.url)}"
       target="_blank"
       rel="noopener noreferrer"
     >
 
       <div class="thumb">
 
-        ${
-          a.image
-          ?
-          `<img
-             src="${escapeHTML(a.image)}"
-             alt="${escapeHTML(a.media)}"
-             loading="lazy"
-           >`
-          :
-          `<div class="fallback">
-             <div class="fallback-star">✦</div>
-             <div class="fallback-media">
-               ${escapeHTML(a.media)}
-             </div>
-           </div>`
-        }
+        <div class="loading">
 
-        <span class="external">↗</span>
+          <div class="loading-star">
+            ✦
+          </div>
+
+          <div class="loading-text">
+            LOADING
+          </div>
+
+        </div>
+
+        <span class="external">
+          ↗
+        </span>
 
       </div>
 
     </a>
+
 
     <div class="info">
 
@@ -1162,199 +1391,549 @@ function createCard(a){
         <div class="date-type">
 
           <span class="date">
-            ${formatDate(a.date)}
+            ${formatDate(article.date)}
           </span>
 
           <span class="type">
-            ${escapeHTML(a.type)}
+            ${escapeHTML(article.type)}
           </span>
 
         </div>
+
 
         <button
           class="heart"
           aria-label="お気に入り"
-          data-heart="${escapeHTML(a.id)}"
         >
-          ${favorites.includes(a.id)?"♥":"♡"}
+
+          ${
+            favorites.includes(article.id)
+            ?
+            "♥"
+            :
+            "♡"
+          }
+
         </button>
 
       </div>
 
+
       <div class="media">
-        ${escapeHTML(a.media)}
+        ${
+          escapeHTML(
+            article.media
+            ||
+            "LOADING..."
+          )
+        }
       </div>
+
 
       <div class="title">
-        ${escapeHTML(a.title)}
+
+        ${
+          escapeHTML(
+            article.title
+            ||
+            "記事情報を取得しています..."
+          )
+        }
+
       </div>
 
+
       <div class="tags">
-        ${tags}
+
+        ${
+          article.tags
+          .map(
+            tag =>
+            `<span class="tag">${escapeHTML(tag)}</span>`
+          )
+          .join("")
+        }
+
       </div>
 
     </div>
+
   `;
 
-  article
-    .querySelector(".heart")
-    .addEventListener("click",()=>{
-      toggleFavorite(a.id);
-    });
 
-  const img=article.querySelector("img");
+  const heart =
+    card.querySelector(".heart");
 
-  if(img){
 
-    img.addEventListener("error",()=>{
+  heart.addEventListener(
+    "click",
+    ()=>toggleFavorite(article.id)
+  );
 
-      const thumb=img.parentElement;
 
-      img.remove();
+  /*
+    OGPを非同期取得
+  */
 
-      const fallback=document.createElement("div");
+  loadCardOGP(
+    card,
+    article
+  );
 
-      fallback.className="fallback";
 
-      fallback.innerHTML=`
-        <div class="fallback-star">✦</div>
-        <div class="fallback-media">
-          ${escapeHTML(a.media)}
-        </div>
-      `;
+  return card;
 
-      thumb.prepend(fallback);
-
-    });
-
-  }
-
-  return article;
 }
 
 
-/* ===== RENDER ===== */
+/* =========================================================
+   CARD OGP
+========================================================= */
+
+async function loadCardOGP(
+  card,
+  article
+){
+
+  const data =
+    await getOGP(article);
+
+
+  const media =
+    card.querySelector(".media");
+
+
+  const title =
+    card.querySelector(".title");
+
+
+  const thumb =
+    card.querySelector(".thumb");
+
+
+  const loading =
+    thumb.querySelector(".loading");
+
+
+  if(loading){
+    loading.remove();
+  }
+
+
+  /* ===============================
+     MEDIA
+
+     手動指定を最優先。
+  =============================== */
+
+  media.textContent =
+    article.media
+    ||
+    data.siteName
+    ||
+    new URL(article.url).hostname;
+
+
+  /* ===============================
+     TITLE
+
+     手動指定を最優先。
+  =============================== */
+
+  title.textContent =
+    article.title
+    ||
+    data.title
+    ||
+    "UNTITLED";
+
+
+  /* ===============================
+     IMAGE
+
+     手動画像 → OGP画像
+  =============================== */
+
+  const image =
+    article.image
+    ||
+    data.image;
+
+
+  if(image){
+
+    const img =
+      document.createElement("img");
+
+
+    img.src = image;
+
+    img.alt =
+      article.media
+      ||
+      data.siteName
+      ||
+      "PRESS ARCHIVE";
+
+
+    img.loading =
+      "lazy";
+
+
+    img.addEventListener(
+      "error",
+      ()=>{
+
+        img.remove();
+
+        addFallback(
+          thumb,
+          article.media
+          ||
+          data.siteName
+          ||
+          "PRESS ARCHIVE"
+        );
+
+      }
+    );
+
+
+    thumb.prepend(img);
+
+
+  }else{
+
+    addFallback(
+      thumb,
+      article.media
+      ||
+      data.siteName
+      ||
+      "PRESS ARCHIVE"
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   FALLBACK
+========================================================= */
+
+function addFallback(
+  thumb,
+  media
+){
+
+  if(
+    thumb.querySelector(".fallback")
+  ){
+    return;
+  }
+
+
+  const fallback =
+    document.createElement("div");
+
+
+  fallback.className =
+    "fallback";
+
+
+  fallback.innerHTML = `
+
+    <div class="fallback-star">
+      ✦
+    </div>
+
+    <div class="fallback-media">
+      ${escapeHTML(media)}
+    </div>
+
+  `;
+
+
+  thumb.prepend(fallback);
+
+}
+
+
+/* =========================================================
+   RENDER
+========================================================= */
 
 function render(){
 
-  const grid=document.getElementById("grid");
-  const empty=document.getElementById("empty");
-  const meta=document.getElementById("meta");
+  const grid =
+    document.getElementById("grid");
 
-  let list=[...articles];
 
-  if(activeFilter!=="ALL"){
-    list=list.filter(a=>a.tags.includes(activeFilter));
+  const empty =
+    document.getElementById("empty");
+
+
+  const meta =
+    document.getElementById("meta");
+
+
+  let list =
+    [...articles];
+
+
+  /* MEMBER */
+
+  if(activeFilter !== "ALL"){
+
+    list =
+      list.filter(
+        article =>
+        article.tags.includes(
+          activeFilter
+        )
+      );
+
   }
+
+
+  /* FAVORITES */
 
   if(favoritesOnly){
-    list=list.filter(a=>favorites.includes(a.id));
+
+    list =
+      list.filter(
+        article =>
+        favorites.includes(
+          article.id
+        )
+      );
+
   }
 
-  const direction=
-    document.getElementById("sortSelect").value;
 
-  list.sort((a,b)=>{
+  /* SORT */
 
-    const aa=new Date(a.date+"T00:00:00");
-    const bb=new Date(b.date+"T00:00:00");
+  const direction =
+    document
+    .getElementById(
+      "sortSelect"
+    )
+    .value;
 
-    return direction==="newest"
-      ? bb-aa
-      : aa-bb;
 
-  });
+  list.sort(
+    (a,b)=>{
+
+      const aa =
+        new Date(
+          a.date
+          +
+          "T00:00:00"
+        );
+
+
+      const bb =
+        new Date(
+          b.date
+          +
+          "T00:00:00"
+        );
+
+
+      return (
+        direction === "newest"
+        ?
+        bb-aa
+        :
+        aa-bb
+      );
+
+    }
+  );
+
 
   grid.innerHTML="";
 
-  list.forEach(a=>{
-    grid.appendChild(createCard(a));
-  });
 
-  meta.textContent=
-    String(list.length).padStart(2,"0")
-    +" ARCHIVES";
+  list.forEach(
+    article =>{
 
-  empty.style.display=
-    list.length ? "none":"block";
+      grid.appendChild(
+        createCard(article)
+      );
+
+    }
+  );
+
+
+  meta.textContent =
+    String(
+      list.length
+    )
+    .padStart(2,"0")
+    +
+    " ARCHIVES";
+
+
+  empty.style.display =
+    list.length
+    ?
+    "none"
+    :
+    "block";
+
 }
 
 
-/* ===== MEMBER FILTER ===== */
+/* =========================================================
+   FILTER
+========================================================= */
 
 document
 .querySelectorAll(".filter")
-.forEach(btn=>{
+.forEach(
+  button =>{
 
-  btn.addEventListener("click",()=>{
+    button.addEventListener(
+      "click",
+      ()=>{
 
-    document
-      .querySelectorAll(".filter")
-      .forEach(x=>x.classList.remove("active"));
+        document
+        .querySelectorAll(".filter")
+        .forEach(
+          item =>
+          item.classList.remove(
+            "active"
+          )
+        );
 
-    btn.classList.add("active");
 
-    activeFilter=btn.dataset.filter;
+        button.classList.add(
+          "active"
+        );
 
-    favoritesOnly=false;
 
-    document
-      .getElementById("favoriteFilter")
-      .classList.remove("active");
+        activeFilter =
+          button.dataset.filter;
+
+
+        favoritesOnly =
+          false;
+
+
+        document
+        .getElementById(
+          "favoriteFilter"
+        )
+        .classList.remove(
+          "active"
+        );
+
+
+        render();
+
+      }
+    );
+
+  }
+);
+
+
+/* =========================================================
+   FAVORITES FILTER
+========================================================= */
+
+document
+.getElementById(
+  "favoriteFilter"
+)
+.addEventListener(
+  "click",
+  function(){
+
+    favoritesOnly =
+      !favoritesOnly;
+
+
+    this.classList.toggle(
+      "active",
+      favoritesOnly
+    );
+
 
     render();
 
-  });
+  }
+);
 
-});
 
-
-/* ===== FAVORITES FILTER ===== */
+/* =========================================================
+   SORT
+========================================================= */
 
 document
-.getElementById("favoriteFilter")
-.addEventListener("click",function(){
+.getElementById(
+  "sortSelect"
+)
+.addEventListener(
+  "change",
+  render
+);
 
-  favoritesOnly=!favoritesOnly;
 
-  this.classList.toggle(
-    "active",
-    favoritesOnly
+/* =========================================================
+   STARS
+========================================================= */
+
+const stars =
+  document.getElementById(
+    "stars"
   );
 
-  render();
 
-});
+for(
+  let i=0;
+  i<80;
+  i++
+){
+
+  const star =
+    document.createElement(
+      "span"
+    );
 
 
-/* ===== SORT ===== */
-
-document
-.getElementById("sortSelect")
-.addEventListener("change",render);
-
-
-/* ===== STARS ===== */
-
-const stars=document.getElementById("stars");
-
-for(let i=0;i<80;i++){
-
-  const s=document.createElement("span");
-
-  s.className=
+  star.className =
     Math.random()>.9
-      ?"star big"
-      :"star";
+    ?
+    "star big"
+    :
+    "star";
 
-  s.style.left=Math.random()*100+"%";
-  s.style.top=Math.random()*100+"%";
 
-  stars.appendChild(s);
+  star.style.left =
+    Math.random()*100
+    +
+    "%";
+
+
+  star.style.top =
+    Math.random()*100
+    +
+    "%";
+
+
+  stars.appendChild(
+    star
+  );
+
 }
 
 
-/* ===== START ===== */
+/* =========================================================
+   START
+========================================================= */
 
 render();
 
